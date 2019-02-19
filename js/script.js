@@ -78,6 +78,8 @@ function appendPageLinks(arr) {
 //Creates buttons.
 appendPageLinks(list);
 
+//Adding 'active' class
+
 //Displays only the first ten items.
 showPage(list, 1);
 
