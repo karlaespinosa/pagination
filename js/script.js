@@ -22,11 +22,11 @@ buttonSearch.textContent = 'Search';
 search.appendChild(buttonSearch);
 
 //Search function
-function searchStudents(arr) { 
-
+function searchStudents(arr) {
    const input = document.querySelector('input');
-   let searchValue = input.value.toLowerCase();   
-
+   let searchValue = input.value.toLowerCase();
+   let students = []; 
+  
    for(let i = 0; i < arr.length; i++) {
       const h3 = arr[i].querySelector('h3');      
       const nameValue = h3.textContent;
@@ -35,10 +35,12 @@ function searchStudents(arr) {
       
       if( (nameValue.indexOf(searchValue) > -1) || (emailValue.indexOf(searchValue) > -1) ) {
          arr[i].style.display = '';
+         students.push(arr[i]);          
       } else {
          arr[i].style.display = 'none';         
-      }
+      }   
    }
+   return students;
 }
 
 //Show pages
@@ -56,11 +58,10 @@ function showPage(arr, numBtn) {
 
 //Buttons
 
-function appendPageLinks(arr) { 
+function appendPageLinks(students) { 
    //Contains the number of buttons
-   let numStudents = arr.length;  
-   const numButtons = Math.ceil( numStudents / 10 ); 
-   
+   let numStudents = students;  
+   const numButtons = Math.ceil( numStudents / 10 );    
 
    //Creates the li and a for every button.
    for(let i = 1; i <= numButtons; i++) {
@@ -76,7 +77,7 @@ function appendPageLinks(arr) {
 }
 
 //Creates buttons.
-appendPageLinks(list);
+appendPageLinks(list.length);
 
 //Adding 'active' class
 
@@ -90,7 +91,7 @@ ul.addEventListener('click', (e) => {
       const numBtn = parseInt(textBtn);
       showPage(list, numBtn);       
    }
-});
+}); 
 
 search.addEventListener('click', (e) => {
    if(e.target.textContent === 'Search') {      
@@ -99,8 +100,23 @@ search.addEventListener('click', (e) => {
 });
 
 input.addEventListener('keyup', () => {
-   searchStudents(list);
+   let students = searchStudents(list);      
    if(input.value === '') {
       showPage(list, 1);
-   }
+   } else {
+      const li = ul.querySelectorAll('li');
+      for(let i = 0; i < li.length; i++) {
+         li[i].style.display = 'none';
+      }          
+      appendPageLinks(students.length);
+      ul.addEventListener('click', (e) => {      
+         if(e.target.tagName === 'A') { 
+            const a = e.target;            
+            const textBtn = a.textContent;
+            const numBtn = parseInt(textBtn);
+            showPage(students, numBtn);       
+         }
+      });
+      showPage(students, 1);         
+   }  
 }); 
