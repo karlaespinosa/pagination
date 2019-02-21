@@ -77,19 +77,17 @@ function appendPageLinks(students, nameClass) {
 //Creates buttons.
 appendPageLinks(list.length, 'firstButtons');
 
-//Adding 'active' class
-
 //Displays only the first ten items.
 showPage(list, 1);
 
-ul.addEventListener('click', (e) => {
-   let students = searchStudents(list);     
+ul.addEventListener('click', (e) => {           
    if(e.target.className === 'firstButtons') { 
       const a = e.target;            
       const textBtn = a.textContent;
       const numBtn = parseInt(textBtn);
-      showPage(list, numBtn);       
-   } else if(e.target.className === 'secondButton') {        
+      showPage(list, numBtn);            
+   } else if(e.target.className === 'secondButton') {  
+      let students = searchStudents(list);      
       const a = e.target;                    
       const textBtn = a.textContent;
       const numBtn = parseInt(textBtn);
@@ -99,8 +97,9 @@ ul.addEventListener('click', (e) => {
 
 
 search.addEventListener('click', (e) => {
-   if(e.target.textContent === 'Search') {      
-      searchStudents(list);
+   if(e.target.textContent === 'Search') {
+      let students = searchStudents(list);     
+      showPage(students, 1);
    }
 });
 
