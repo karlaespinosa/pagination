@@ -70,10 +70,7 @@ function appendPageLinks(students, nameClass) {
       a.className = nameClass;
       a.textContent = i;
       li.appendChild(a);
-      ul.appendChild(li);      
-      /* if(a.textContent === '1') {
-         a.classList.add('active');
-      } */ 
+      ul.appendChild(li);       
    }
 }
 
