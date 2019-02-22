@@ -119,7 +119,6 @@ ul.addEventListener('click', (e) => {
    }
 });
 
-
 search.addEventListener('click', (e) => {
    if(e.target.textContent === 'Search') {
       let students = searchStudents(list);     
