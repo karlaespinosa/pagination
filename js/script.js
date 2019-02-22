@@ -69,9 +69,9 @@ function appendPageLinks(students, nameClass) {
       const a = document.createElement('a');
       a.className = nameClass;
       a.textContent = i;
-      /* if(a.textContent === '1') {
+      if(a.textContent === '1') {
          a.classList.add('active');
-      } */
+      } 
       li.appendChild(a);
       ul.appendChild(li);           
    }  
@@ -84,24 +84,38 @@ appendPageLinks(list.length, 'firstButtons');
 showPage(list, 1);
 
 ul.addEventListener('click', (e) => {    
-   /* const btns = ul.document.querySelectorAll('li a');
-   for(let i = 0; i < btns.length; i++) {      
-      const current = document.querySelector('.active');
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";      
-   } */
+   const btns = ul.querySelectorAll('li a');    
 
    if(e.target.className === 'firstButtons') { 
       const a = e.target;              
       const textBtn = a.textContent;
       const numBtn = parseInt(textBtn);
-      showPage(list, numBtn);            
+      showPage(list, numBtn);
+      /*Checks if the current button has the 'active class on it, if not, adds it to it*/
+      if(e.target.classList.contains('firstButtons')) {
+         for(let i = 0; i < btns.length; i++) {      
+             if(btns[i].classList.contains('active')) {
+                btns[i].classList.remove("active");
+             }
+         }
+         e.target.classList.add("active");
+      }
+
    } else if(e.target.className === 'secondButton') {  
       let students = searchStudents(list);      
       const a = e.target;                    
       const textBtn = a.textContent;
       const numBtn = parseInt(textBtn);
-      showPage(students, numBtn);                          
+      showPage(students, numBtn);
+      /*Checks if the current button has the 'active class on it, if not, adds it to it*/
+      if(e.target.classList.contains('secondButton')) {
+         for(let i = 0; i < btns.length; i++) {      
+             if(btns[i].classList.contains('active')) {
+                btns[i].classList.remove("active");
+             }
+         }
+         e.target.classList.add("active");
+      }                          
    }
 });
 
