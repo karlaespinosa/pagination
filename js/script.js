@@ -69,9 +69,12 @@ function appendPageLinks(students, nameClass) {
       const a = document.createElement('a');
       a.className = nameClass;
       a.textContent = i;
+      /* if(a.textContent === '1') {
+         a.classList.add('active');
+      } */
       li.appendChild(a);
-      ul.appendChild(li);       
-   }
+      ul.appendChild(li);           
+   }  
 }
 
 //Creates buttons.
@@ -80,9 +83,16 @@ appendPageLinks(list.length, 'firstButtons');
 //Displays only the first ten items.
 showPage(list, 1);
 
-ul.addEventListener('click', (e) => {           
+ul.addEventListener('click', (e) => {    
+   /* const btns = ul.document.querySelectorAll('li a');
+   for(let i = 0; i < btns.length; i++) {      
+      const current = document.querySelector('.active');
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";      
+   } */
+
    if(e.target.className === 'firstButtons') { 
-      const a = e.target;            
+      const a = e.target;              
       const textBtn = a.textContent;
       const numBtn = parseInt(textBtn);
       showPage(list, numBtn);            
