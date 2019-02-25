@@ -77,6 +77,17 @@ function appendPageLinks(students, nameClass) {
    }  
 }
 
+function addActive(e, btnClass, arr) {
+   if(e.target.classList.contains(btnClass)) {
+      for(let i = 0; i < arr.length; i++) {      
+          if(arr[i].classList.contains('active')) {
+             arr[i].classList.remove("active");
+          }
+      }
+      e.target.classList.add("active");
+   }
+}
+
 //Creates buttons.
 appendPageLinks(list.length, 'firstButtons');
 
@@ -92,14 +103,7 @@ ul.addEventListener('click', (e) => {
       const numBtn = parseInt(textBtn);
       showPage(list, numBtn);
       /*Checks if the current button has the 'active class on it, if not, adds it to it*/
-      if(e.target.classList.contains('firstButtons')) {
-         for(let i = 0; i < btns.length; i++) {      
-             if(btns[i].classList.contains('active')) {
-                btns[i].classList.remove("active");
-             }
-         }
-         e.target.classList.add("active");
-      }
+      addActive(e, 'firstButtons', btns);      
 
    } else if(e.target.className === 'secondButton') {  
       let students = searchStudents(list);      
@@ -108,14 +112,7 @@ ul.addEventListener('click', (e) => {
       const numBtn = parseInt(textBtn);
       showPage(students, numBtn);
       /*Checks if the current button has the 'active class on it, if not, adds it to it*/
-      if(e.target.classList.contains('secondButton')) {
-         for(let i = 0; i < btns.length; i++) {      
-             if(btns[i].classList.contains('active')) {
-                btns[i].classList.remove("active");
-             }
-         }
-         e.target.classList.add("active");
-      }                          
+      addActive(e, 'secondButton', btns);                              
    }
 });
 
