@@ -37,8 +37,8 @@ function searchStudents(arr) {
          arr[i].style.display = '';
          students.push(arr[i]);          
       } else {
-         arr[i].style.display = 'none';         
-      }   
+         arr[i].style.display = 'none';                  
+      }      
    }
    return students;
 }
@@ -139,5 +139,5 @@ input.addEventListener('keyup', () => {
       }          
       appendPageLinks(students.length, 'secondButton');      
       showPage(students, 1);             
-   }  
+   }   
 });
